@@ -164,6 +164,8 @@ export default {
             } else {
                 this.indeterminate();
             }
+
+            this.$emit('change');
         },
         updateBelow() {
             if (this.hasChildren) {
