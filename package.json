@@ -1,0 +1,42 @@
+{
+  "name": "@enso-ui/checkbox",
+  "version": "1.0.0",
+  "description": "Checkbox",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enso-ui/checkbox.git"
+  },
+  "keywords": [
+    "checkbox",
+    "vue",
+    "bulma"
+  ],
+  "author": "Adrian Ocneanu <aocneanu@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enso-ui/checkbox/issues"
+  },
+  "homepage": "https://github.com/enso-ui/checkbox#readme",
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@enso-ui/card": "1.0.x",
+    "@vue/cli-plugin-babel": "^4.0.5",
+    "@vue/cli-plugin-eslint": "^4.0.5",
+    "@vue/cli-service": "^4.0.5",
+    "@vue/eslint-config-airbnb": "^5.0.0",
+    "autoprefixer": "^9.6.1",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^6.0.0",
+    "eslint": "^6.8.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-vue": "^6.0.0"
+  },
+  "dependencies": {
+    "bulma": "^0.8.0",
+    "vue": "^2.5.16"
+  }
+}
