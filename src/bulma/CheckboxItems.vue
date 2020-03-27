@@ -1,6 +1,6 @@
 <template>
-    <div class="wrapper">
-        <div class="is-hoverable"
+    <div class="items">
+        <div class="is-hoverable-item"
             v-for="item in items"
             :key="item.id">
             <slot name="item"
