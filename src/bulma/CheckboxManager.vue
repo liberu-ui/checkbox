@@ -17,7 +17,7 @@
                 <card-collapse/>
             </template>
         </card-header>
-        <card-content class="has-padding-large">
+        <card-content class="p-3">
             <checkbox-manager class="is-rounded checkbox-manager"
                 :class="{ 'raises-on-hover': items[group]._items.length }"
                 v-for="group in groups"
