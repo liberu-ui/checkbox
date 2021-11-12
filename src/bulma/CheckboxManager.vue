@@ -2,10 +2,10 @@
     <card collapsible
         :collapsed="collapsed">
         <card-header class="has-background-light">
-            <template v-slot:title>
+            <template #title>
                 {{ title }}
             </template>
-            <template v-slot:controls>
+            <template #controls>
                 <card-control>
                     <slot name="checkbox"
                         :update-below="updateBelow">
@@ -27,12 +27,12 @@
                 :items="items[group]"
                 v-model="value"
                 @change="update"
-                ref="children">
-                <template v-slot:checkbox="props">
+                :ref="children.push">
+                <template #checkbox="props">
                     <slot name="checkbox"
                         v-bind="props"/>
                 </template>
-                <template v-slot:item="props">
+                <template #item="props">
                     <slot name="item"
                         v-bind="props"/>
                 </template>
@@ -42,7 +42,7 @@
                 @change="update"
                 ref="items"
                 v-if="hasItems">
-                <template v-slot:item="props">
+                <template #item="props">
                     <slot name="item"
                         v-bind="props"/>
                 </template>
@@ -86,6 +86,7 @@ export default {
 
     data: () => ({
         ready: false,
+        children: [],
     }),
 
     computed: {
@@ -94,10 +95,10 @@ export default {
                 && (!this.hasChildren || this.childrenChecked);
         },
         childrenChecked() {
-            return this.ready && !this.$refs.children.some(child => !child.checked);
+            return this.ready && !this.children.some(child => !child.checked);
         },
         childrenUnchecked() {
-            return this.ready && !this.$refs.children.some(child => !child.unchecked);
+            return this.ready && !this.children.some(child => !child.unchecked);
         },
         itemsChecked() {
             return this.ready && this.$refs.items.status === Checked;
@@ -169,7 +170,7 @@ export default {
         },
         updateBelow() {
             if (this.hasChildren) {
-                this.$refs.children
+                this.children
                     .forEach(child => child.change(this.checkbox.checked));
             }
 
