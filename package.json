@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/checkbox",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Checkbox",
   "main": "index.js",
   "scripts": {
