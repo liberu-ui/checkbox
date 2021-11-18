@@ -9,7 +9,8 @@
                     <input type="checkbox"
                         :id="item.id"
                         :value="item.id"
-                        v-model="value">
+                        v-model="modelValue"
+                        @input="$emit('update:modelValue', $event)">
                     {{ item.label }}
                 </label>
             </slot>
@@ -30,18 +31,20 @@ export default {
             type: Array,
             required: true,
         },
-        value: {
+        modelValue: {
             type: Array,
             required: true,
         },
     },
 
+    emits: ['change', 'update:modelValue'],
+
     computed: {
         checked() {
-            return this.items.filter(({ id }) => this.value.includes(id));
+            return this.items.filter(({ id }) => this.modelValue.includes(id));
         },
         unchecked() {
-            return this.items.filter(({ id }) => !this.value.includes(id));
+            return this.items.filter(({ id }) => !this.modelValue.includes(id));
         },
         status() {
             if (this.checked.length === this.items.length) {
@@ -62,7 +65,7 @@ export default {
 
     methods: {
         all() {
-            this.unchecked.forEach(({ id }) => this.value.push(id));
+            this.unchecked.forEach(({ id }) => this.modelValue.push(id));
         },
         change(check) {
             if (check) {
@@ -75,8 +78,8 @@ export default {
             this.checked.forEach(item => this.uncheck(item));
         },
         uncheck({ id }) {
-            const index = this.value.indexOf(id);
-            this.value.splice(index, 1);
+            const index = this.modelValue.indexOf(id);
+            this.modelValue.splice(index, 1);
         },
     },
 };

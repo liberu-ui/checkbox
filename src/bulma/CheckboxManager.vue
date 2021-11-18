@@ -25,7 +25,7 @@
                 :title="group"
                 :key="group"
                 :items="items[group]"
-                v-model="value"
+                v-model="modelValue"
                 @change="update"
                 :ref="children.push">
                 <template #checkbox="props">
@@ -38,7 +38,7 @@
                 </template>
             </checkbox-manager>
             <checkbox-items :items="items._items"
-                v-model="value"
+                v-model="modelValue"
                 @change="update"
                 ref="items"
                 v-if="hasItems">
@@ -78,11 +78,13 @@ export default {
             type: String,
             required: true,
         },
-        value: {
+        modelValue: {
             type: Array,
             required: true,
         },
     },
+
+    emits: ['change'],
 
     data: () => ({
         ready: false,
