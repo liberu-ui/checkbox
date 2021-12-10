@@ -27,7 +27,7 @@
                 :items="items[group]"
                 v-model="modelValue"
                 @change="update"
-                :ref="children.push">
+                :ref="setChildrenRef">
                 <template #checkbox="props">
                     <slot name="checkbox"
                         v-bind="props"/>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { shallowReadonly } from 'vue';
 import {
     Card, CardHeader, CardContent, CardControl, CardCollapse,
 } from '@enso-ui/card/bulma';
@@ -88,7 +89,7 @@ export default {
 
     data: () => ({
         ready: false,
-        children: [],
+        childrenRefs: [],
     }),
 
     computed: {
@@ -97,10 +98,10 @@ export default {
                 && (!this.hasChildren || this.childrenChecked);
         },
         childrenChecked() {
-            return this.ready && !this.children.some(child => !child.checked);
+            return this.ready && !this.childrenRefs.some(child => !child.checked);
         },
         childrenUnchecked() {
-            return this.ready && !this.children.some(child => !child.unchecked);
+            return this.ready && !this.childrenRefs.some(child => !child.unchecked);
         },
         itemsChecked() {
             return this.ready && this.$refs.items.status === Checked;
@@ -131,6 +132,10 @@ export default {
         this.update();
     },
 
+    beforeUpdate() {
+        this.childrenRefs = []
+    },
+
     methods: {
         change(checked) {
             if (checked) {
@@ -150,6 +155,11 @@ export default {
         indeterminate() {
             this.checkbox.checked = false;
             this.checkbox.indeterminate = true;
+        },
+        setChildrenRef(el) {
+            if (el) {
+                this.childrenRefs.push(shallowReadonly(el));
+            }
         },
         uncheck(below = false) {
             this.checkbox.checked = false;
@@ -172,7 +182,7 @@ export default {
         },
         updateBelow() {
             if (this.hasChildren) {
-                this.children
+                this.childrenRefs
                     .forEach(child => child.change(this.checkbox.checked));
             }
 
