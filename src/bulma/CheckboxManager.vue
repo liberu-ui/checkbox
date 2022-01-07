@@ -133,7 +133,7 @@ export default {
     },
 
     beforeUpdate() {
-        this.childrenRefs = []
+        this.childrenRefs = [];
     },
 
     methods: {
