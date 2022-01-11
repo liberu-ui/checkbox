@@ -2,10 +2,10 @@
     <card collapsible
         :collapsed="collapsed">
         <card-header class="has-background-light">
-            <template v-slot:title>
+            <template #title>
                 {{ title }}
             </template>
-            <template v-slot:controls>
+            <template #controls>
                 <card-control>
                     <slot name="checkbox"
                         :update-below="updateBelow">
@@ -25,24 +25,24 @@
                 :title="group"
                 :key="group"
                 :items="items[group]"
-                v-model="value"
+                v-model="modelValue"
                 @change="update"
-                ref="children">
-                <template v-slot:checkbox="props">
+                :ref="setChildrenRef">
+                <template #checkbox="props">
                     <slot name="checkbox"
                         v-bind="props"/>
                 </template>
-                <template v-slot:item="props">
+                <template #item="props">
                     <slot name="item"
                         v-bind="props"/>
                 </template>
             </checkbox-manager>
             <checkbox-items :items="items._items"
-                v-model="value"
+                v-model="modelValue"
                 @change="update"
                 ref="items"
                 v-if="hasItems">
-                <template v-slot:item="props">
+                <template #item="props">
                     <slot name="item"
                         v-bind="props"/>
                 </template>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { shallowReadonly } from 'vue';
 import {
     Card, CardHeader, CardContent, CardControl, CardCollapse,
 } from '@enso-ui/card/bulma';
@@ -78,14 +79,17 @@ export default {
             type: String,
             required: true,
         },
-        value: {
+        modelValue: {
             type: Array,
             required: true,
         },
     },
 
+    emits: ['change'],
+
     data: () => ({
         ready: false,
+        childrenRefs: [],
     }),
 
     computed: {
@@ -94,10 +98,10 @@ export default {
                 && (!this.hasChildren || this.childrenChecked);
         },
         childrenChecked() {
-            return this.ready && !this.$refs.children.some(child => !child.checked);
+            return this.ready && !this.childrenRefs.some(child => !child.checked);
         },
         childrenUnchecked() {
-            return this.ready && !this.$refs.children.some(child => !child.unchecked);
+            return this.ready && !this.childrenRefs.some(child => !child.unchecked);
         },
         itemsChecked() {
             return this.ready && this.$refs.items.status === Checked;
@@ -128,6 +132,10 @@ export default {
         this.update();
     },
 
+    beforeUpdate() {
+        this.childrenRefs = [];
+    },
+
     methods: {
         change(checked) {
             if (checked) {
@@ -147,6 +155,11 @@ export default {
         indeterminate() {
             this.checkbox.checked = false;
             this.checkbox.indeterminate = true;
+        },
+        setChildrenRef(el) {
+            if (el) {
+                this.childrenRefs.push(shallowReadonly(el));
+            }
         },
         uncheck(below = false) {
             this.checkbox.checked = false;
@@ -169,7 +182,7 @@ export default {
         },
         updateBelow() {
             if (this.hasChildren) {
-                this.$refs.children
+                this.childrenRefs
                     .forEach(child => child.change(this.checkbox.checked));
             }
 
