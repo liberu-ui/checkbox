@@ -25,7 +25,8 @@
                 :title="group"
                 :key="group"
                 :items="items[group]"
-                v-model="modelValue"
+                :model-value="modelValue"
+                @input="$emit('update:modelValue', $event)"
                 @change="update"
                 :ref="setChildrenRef">
                 <template #checkbox="props">
@@ -38,7 +39,8 @@
                 </template>
             </checkbox-manager>
             <checkbox-items :items="items._items"
-                v-model="modelValue"
+                :model-value="modelValue"
+                @input="$emit('update:modelValue', $event)"
                 @change="update"
                 ref="items"
                 v-if="hasItems">

@@ -9,7 +9,7 @@
                     <input type="checkbox"
                         :id="item.id"
                         :value="item.id"
-                        v-model="modelValue"
+                        :model-value="modelValue"
                         @input="$emit('update:modelValue', $event)">
                     {{ item.label }}
                 </label>
