@@ -25,8 +25,7 @@
                 :title="group"
                 :key="group"
                 :items="items[group]"
-                :model-value="modelValue"
-                @input="$emit('update:modelValue', $event)"
+                v-bind="$attrs"
                 @change="update"
                 :ref="setChildrenRef">
                 <template #checkbox="props">
@@ -39,8 +38,7 @@
                 </template>
             </checkbox-manager>
             <checkbox-items :items="items._items"
-                :model-value="modelValue"
-                @input="$emit('update:modelValue', $event)"
+                v-bind="$attrs"
                 @change="update"
                 ref="items"
                 v-if="hasItems">
@@ -79,10 +77,6 @@ export default {
         },
         title: {
             type: String,
-            required: true,
-        },
-        modelValue: {
-            type: Array,
             required: true,
         },
     },
@@ -149,7 +143,6 @@ export default {
         check(below = false) {
             this.checkbox.indeterminate = false;
             this.checkbox.checked = true;
-
             if (below) {
                 this.updateBelow();
             }
@@ -166,7 +159,6 @@ export default {
         uncheck(below = false) {
             this.checkbox.checked = false;
             this.checkbox.indeterminate = false;
-
             if (below) {
                 this.updateBelow();
             }
@@ -179,7 +171,6 @@ export default {
             } else {
                 this.indeterminate();
             }
-
             this.$emit('change');
         },
         updateBelow() {
@@ -187,7 +178,6 @@ export default {
                 this.childrenRefs
                     .forEach(child => child.change(this.checkbox.checked));
             }
-
             if (this.hasItems) {
                 this.$refs.items.change(this.checkbox.checked);
             }

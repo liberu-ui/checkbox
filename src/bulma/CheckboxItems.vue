@@ -9,8 +9,7 @@
                     <input type="checkbox"
                         :id="item.id"
                         :value="item.id"
-                        :model-value="modelValue"
-                        @input="$emit('update:modelValue', $event)">
+                        v-model="selection">
                     {{ item.label }}
                 </label>
             </slot>
@@ -46,11 +45,18 @@ export default {
         unchecked() {
             return this.items.filter(({ id }) => !this.modelValue.includes(id));
         },
+        selection: {
+            get() {
+                return this.modelValue;
+            },
+            set(selected) {
+                this.$emit('update:modelValue', selected);
+            },
+        },
         status() {
             if (this.checked.length === this.items.length) {
                 return Checked;
             }
-
             return this.checked.length
                 ? Indeterminate
                 : Unchecked;
