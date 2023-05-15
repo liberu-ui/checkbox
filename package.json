@@ -1,5 +1,5 @@
 {
-  "name": "@cgdsoftware/checkbox",
+  "name": "@liberu-ui/checkbox",
   "version": "3.0.9",
   "description": "Checkbox",
   "main": "index.js",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/enso-ui/checkbox#readme",
   "dependencies": {
-    "@cgdsoftware/card": "^3.0",
+    "@liberu-ui/card": "^3.0",
     "bulma": "^0.9.0",
     "vue": "^3.0"
   },
