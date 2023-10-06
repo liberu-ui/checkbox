@@ -55,7 +55,7 @@
 import { shallowReadonly } from 'vue';
 import {
     Card, CardHeader, CardContent, CardControl, CardCollapse,
-} from '@enso-ui/card/bulma';
+} from '@liberu-ui/card/bulma';
 import CheckboxItems from './CheckboxItems.vue';
 import { Checked, Unchecked } from '../statuses';
 
