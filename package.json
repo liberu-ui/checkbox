@@ -1,6 +1,6 @@
 {
   "name": "@liberu-ui/checkbox",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "description": "Checkbox",
   "main": "index.js",
   "scripts": {
