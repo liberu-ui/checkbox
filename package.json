@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enso-ui/checkbox.git"
+    "url": "git+https://github.com/liberu-ui/checkbox.git"
   },
   "keywords": [
     "checkbox",
@@ -18,9 +18,9 @@
   "author": "Adrian Ocneanu <aocneanu@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/enso-ui/checkbox/issues"
+    "url": "https://github.com/liberu-ui/checkbox/issues"
   },
-  "homepage": "https://github.com/enso-ui/checkbox#readme",
+  "homepage": "https://github.com/liberu-ui/checkbox#readme",
   "dependencies": {
     "@liberu-ui/card": "^3.0",
     "bulma": "^0.9.0",

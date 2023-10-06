@@ -1,10 +1,10 @@
 # Checkbox
 
-![npm license](https://img.shields.io/npm/l/@enso-ui/checkbox.svg) 
-![npm download](https://img.shields.io/npm/dm/@enso-ui/checkbox.svg) 
-![GitHub top language](https://img.shields.io/github/languages/top/enso-ui/checkbox.svg) 
-![GitHub issues](https://img.shields.io/github/issues/enso-ui/checkbox.svg) 
-![npm version](https://img.shields.io/npm/v/@enso-ui/checkbox.svg) 
+![npm license](https://img.shields.io/npm/l/@liberu-ui/checkbox.svg) 
+![npm download](https://img.shields.io/npm/dm/@liberu-ui/checkbox.svg) 
+![GitHub top language](https://img.shields.io/github/languages/top/liberu-ui/checkbox.svg) 
+![GitHub issues](https://img.shields.io/github/issues/liberu-ui/checkbox.svg) 
+![npm version](https://img.shields.io/npm/v/@liberu-ui/checkbox.svg) 
 
 Checkbox
 
@@ -21,16 +21,16 @@ Check the full documentation at  [docs.laravel-enso.com](https://docs.laravel-en
 
 Install the package:
 ```
-npm i @enso-ui/checkbox
+npm i @liberu-ui/checkbox
 ```
 Import the desired component(s):
 ```js
-import { CheckboxManager, CheckboxItems } from '@enso-ui/checkbox/bulma';
+import { CheckboxManager, CheckboxItems } from '@liberu-ui/checkbox/bulma';
 ```
 
 ### Exports
 
-`@enso-ui/checkbox/bulma`:
+`@liberu-ui/checkbox/bulma`:
 - `CheckboxManager`
 - `CheckboxItems`
 
